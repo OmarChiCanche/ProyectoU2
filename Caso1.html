@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>/*ESTILO QUE LE DARA AL MENU DE LOS CASOS QUE SE VERA EN EL HTML*/
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+        
+        li {
+          float: left;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #111;
+        }
+        </style>
+    <body>
+        <div>
+            <h1>Lenguaje y Automatas ll</h1> <!-- ETIQUETA DE TITULO -->
+            <h3>Codigo Intermedio</h3> <!-- ETIQUETA DE TTITULO  -->
+            <div id="navigation">
+                <ul id="menu-bar">
+                    <li><a href="Caso1.html">CASO 1</a></li> <!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso2.html">CASO 2</a></li><!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso3.html">CASO 3</a></li><!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso4.html">CASO 4</a></li><!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso5.html">CASO 5</a></li><!-- MENU PARA LOS CASOS  -->
+                   </ul>
+            
+            </div>
+    <div>
+        <p>CASO 1 <!-- ETIQUETA DE TTITULO  -->
+        </p>
+    </div>
+    <div>
+        
+        <button>X =</button><input type="text" name="Dato" id='t1'value= "9+5*Y"><br><br> <!-- CUADRO DE TEXTO DONDE SE PODRA ECRIBIR LA EXPRESION  -->
+        <button onclick= "Caso1()">generar codigo</button><br> <!-- BOTON QUE HACE QUE GENERE EL CODIGO  -->
+    
+    </div>
+    <div>
+        <h2>RESULTADO</h2><br> <!-- ETIQUETA DE TTITULO  -->
+        <textarea name="" id='c1' cols="15" rows="10"></textarea><!-- CUADRO DE TEXTO DONDE SE GENREA EL RESULTADO  -->
+    </div>  
+<script>      
+function Caso1() {
+    
+    var ecuacion = document.getElementById('t1').value;
+       if(ecuacion != null){
+           var expres = /\d{1,}\s{0,}['+']\s{0,1}\d{1,}/gi; 
+           var suma = ecuacion.match(expres);
+           var i = 0;//VARIABLE CON VALOR DE 0
+           var t1 = 't';//VARIABLE QUE ES T
+           var r1 = t1 + i + '=' + suma;//VARIABLE 
+           var otro = ecuacion.replace(expres,t1+i);//REMPLAZA LO DE LA EXPRES Y T1 +I
+           i++;
+           var r2 = t1+i+'='+otro;
+      };
+    document.getElementById('c1').value = r1  +"\n"+r2;//IMPRIME TODO EN EL ID C2 QUE ES EL CUADRO DE TEXTO 
+   
+}
+</script>
+</body>
+</html>

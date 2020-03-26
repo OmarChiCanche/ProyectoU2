@@ -5,47 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codigo</title>
-    <script src="caso1.js"></script>
+   
 </head>
-
+<style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    li {
+      float: left;
+    }
+    
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+    li a:hover {
+      background-color: #111;
+    }
+    </style>
 <body>
     <div>
         <h1>Lenguaje y Automatas ll</h1><br>
         <h3>Codigo Intermedio</h3>
-    </div>
-    <div>
-        <p>CASO 1
-        </p>
-    </div>
-    <div>
-        <input type="text" name="Dato" id='exp'value= "9+5*Y"><br>
-        <button onclick= "Casoo1()">generar codigo</button><br>
-    </div>    
-    <div>
-        <h2>Triplos</h2><br>
-        <textarea name="" id='re' cols="15" rows="5"></textarea>
-    </div>    
+        <div id="navigation">
+            <ul id="menu-bar">
+                <li><a href="Caso1.html">CASO 1</a></li>
+                <li><a href="Caso2.html">CASO 2</a></li>
+                <li><a href="Caso3.html">CASO 3</a></li>
+                <li><a href="Caso4.html">CASO 3</a></li>
+                <li><a href="Caso5.html">CASO 3</a></li>
+               </ul>
         
+        </div>
+     
 </body>
-<script>
-    
-function Casoo1() {
-    
-    var ecuacion = document.getElementById('exp').value;
-   //let arrayExp = expSinEspa.match(new);
-       if(ecuacion != null){
-           var expres = /\d{1,}\s{0,}['+']\s{0,1}\d{1,}/gi; 
-           var suma = ecuacion.match(expres);
-           var i = 0;
-           var t = 't';
-           var result = t + i + '=' + suma;
-           var otro = ecuacion.replace(expres,t+i);
-           i++;
-           var result2 = t+i+'='+otro;
-      };
-    document.getElementById('re').value = result +"\n"+result2;
-   
-}
-</script>
 
+ 
 </html>

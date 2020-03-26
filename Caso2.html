@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASO1</title>
+</head>
+<body>
+    <style>   /*LE DA UN ESTILO AL MENU DONDE SE TIENE LOS CASOS */
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+        
+        li {
+          float: left;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #111;
+        }
+        </style>
+    <body>
+        <div>
+            <h1>Lenguaje y Automatas ll</h1> <!-- SE MUESTRA EN EL LA PANTALLA ETIQUETA DE TEXTO -->
+            <h3>Codigo Intermedio</h3><!-- SE MUESTRA EN EL LA PANTALLA ETIQUETA DE TEXTO -->
+            <div id="navigation"> <!-- MENU PARA LOS CASOS  -->
+                <ul id="menu-bar">
+                    <li><a href="Caso1.html">CASO 1</a></li> <!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso2.html">CASO 2</a></li> <!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso3.html">CASO 3</a></li><!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso4.html">CASO 4</a></li><!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso5.html">CASO 5</a></li><!-- MENU PARA LOS CASOS  -->
+                   </ul>
+            
+            </div>
+    <div>
+        <p>CASO 2 <!-- SE MUESTRA EN EL LA PANTALLA ETIQUETA DE TEXTO -->
+        </p>
+    </div>
+    <div>
+        
+        <button>X =</button><input type="text" name="Dato" id='T2'value= "a/a+b/b"><br><br> <!-- ETIQUETA DE TEXTO -->
+        <button onclick= "caso2()">generar codigo</button><br> <!-- BOTON PARA GENERAR EL CODIGO -->
+    </div>    
+    <div>
+        <h2>RESULTADO</h2><br>
+        <textarea name="" id='c2' cols="15" rows="10"></textarea> <!-- SE MUESTRA EN EL LA PANTALLA EL RESULTADO DEL CODIGO ,ETIQUETA DE TEXTO -->
+    </div>   
+<script>
+    
+    function caso2(){
+            var expIngresada = document.getElementById("T2").value;   //ES PAARRA QUE LEA EN EL DOCUMENTO LO QUE SE INGRESA EN EL CUADRO DE TEXTO          
+            document.getElementById("c2").innerHTML=expIngresada;              
+            var sMR = /[a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|)( |)(\*|\/)( |)([a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|))/gm;  //expresiones a utilizar para obtener la ecuacion  
+            var sMD = /[a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|)( |)(\+|\-)( |)([a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|))/gm;  //expresiones a utilizar para obtener la ecuacion  
+            var siMV=/(\*|\/)/gm;//VARIABLE 
+            var siMR=/(\+|\-)/gm;//VARIABLE 
+            let t1;  //VARIABLE QUE SE UTILIZA EN EL WHILE
+            let t2; //VARIABLE QUE SE UTILIZA EN EL WHILE
+            var text = ""; //VARIABLE QUE SE UTILIZA EN EL WHILE
+            var sup =["ini"]; //VARIABLE QUE SERA UN ARREGLO PARA ALMACENAR 
+            var i=0; //VARIABLE QUE SE UTILIZA EN EL WHILE
+            var i2=0; //VARIABLE QUE SE UTILIZA EN EL WHILE
+            var j; //VARIABLE QUE SE UTILIZA EN EL WHILE
+            var c=0; //VARIABLE QUE SE UTILIZA EN EL WHILE
+            let siM = expIngresada.match(siMV); var cantP=siM.length; //ALMACENA LOS SIGNOS DE SIMV             
+            let sigmenor = expIngresada.match(siMR); var cantSignosM = sigmenor.length;//ALMACENA LOS SIGNOS DE SIMR
+            t1 = expIngresada.match(sMR);                                             
+            while(i < cantP){                                                             
+                t2 = expIngresada.match(sMR);                                        
+                t1[c]=t2[0];                                                             
+                for(j=0; j<1; j++){                                                      
+                    text += "t" +c + " = "+ t1[c] + "\n";                                          
+                    sup[c] = "t" +c + "";                                           
+                    expIngresada = expIngresada.replace(t1[c],sup[c]); c++                              
+                } i++      
+            } 
+
+            while(i2 < cantSignosM){      //dentro del while se pone un for                       
+                t2 = expIngresada.match(sMD);             
+                t1[c]=t2[0];                                   
+                for(j=0; j<1; j++){                           
+                    text += "t" +c + " = "+ t1[c];  
+                    sup[c] = "t" +c + " ";               
+                    expIngresada = expIngresada.replace(t1[c],sup[c]); c++            
+                } i2++     
+            } 
+            document.getElementById("c2").innerHTML=text;//IMPRIME TODO EN EL ID C2 QUE ES EL CUADRO DE TEXTO  
+}
+</script>
+
+</body>
+</html>

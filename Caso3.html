@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>/*LE DA UN ESTILO AL MENU DONDE SE TIENE LOS CASOS */
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+        
+        li {
+          float: left;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #111;
+        }
+        </style>
+    <body>
+        <div>
+            <h1>Lenguaje y Automatas ll</h1><!-- SE MUESTRA EN EL LA PANTALLA ETIQUETA DE TEXTO -->
+            <h3>Codigo Intermedio</h3><!-- SE MUESTRA EN EL LA PANTALLA ETIQUETA DE TEXTO -->
+            <div id="navigation"><!-- MENU PARA LOS CASOS  -->
+                <ul id="menu-bar">
+                    <li><a href="Caso1.html">CASO 1</a></li><!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso2.html">CASO 2</a></li><!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso3.html">CASO 3</a></li><!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso4.html">CASO 4</a></li><!-- MENU PARA LOS CASOS  -->
+                    <li><a href="Caso5.html">CASO 5</a></li><!-- MENU PARA LOS CASOS  -->
+                   </ul>
+            
+            </div>
+            <div>
+                <p>CASO 3 <!-- SE MUESTRA EN EL LA PANTALLA ETIQUETA DE TEXTO -->
+                </p>
+            </div>
+            <div>
+                
+                <button>X =</button><input type="text" name="Dato" id='T3'value= "(a+ 2) / 3 + b"><br><br>  <!-- ETIQUETA DE TEXTO -->
+                <button onclick= "caso3()">generar codigo</button><br> <!-- BOTON PARA GENERAR EL CODIGO -->
+            
+            </div>
+            <div>
+                <h2>RESULTADO</h2><br>
+                <textarea name="" id='c3' cols="15" rows="10"></textarea> <!-- SE MUESTRA EN EL LA PANTALLA EL RESULTADO DEL CODIGO ,ETIQUETA DE TEXTO -->
+            </div>  
+    <script>
+        function caso3(){
+        var expIngresada = document.getElementById("T3").value; //ES PAARRA QUE LEA EN EL DOCUMENTO LO QUE SE INGRESA EN EL CUADRO DE TEXTO
+        document.getElementById("c3").innerHTML=expIngresada; 
+        let CPA;
+        var PRS = /\([a-zA-Z0-9]{1,}( |\[\d\]{1}|)(\*|\/|\+|\-)( |)[a-zA-Z0-9]{1,}( |\[\d\]{1}|)\)/gm;
+        var PRSA=/\(/gm; CPA=expIngresada.match(PRSA); 
+        var CPRS=CPA.length;//CANTIDAD DE PARANTERIRS QUE TIENE LA ECUACION
+        var SMD = /[a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|)( |)(\*|\/)( |)([a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|))/gm; //EXPRESION PARA LAS ECUACIONES 
+        var SSR = /[a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|)( |)(\+|\-)( |)([a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|))/gm; //EXPRESION PARA LAS ECUACIONES 
+        var sma=/( |)(\*|\/)( |)/gm; 
+        var SM=/( |)(\+|\-)( |)/gm;        
+        var text = ""; //VARIABLE DECLARADAS
+        let t1; //VARIABLE DECLARADAS
+        let t2; //VARIABLE DECLARADAS
+        var sup =["ini"]; //VARIABLE DECLARADAS
+        var i1=0; //VARIABLE DECLARADAS
+        var i2=0; //VARIABLE DECLARADAS
+        var i3=0; //VARIABLE DECLARADAS
+        var j; //VARIABLE DECLARADAS
+        var c=0;//VARIABLE DECLARADAS
+        t1 = expIngresada.match(PRS);                        
+        while(i1 < CPRS){                                  
+            t2 = expIngresada.match(PRS);   //ALMACENA LAS OPERACIONES DE PRS                  
+            t1[c]=t2[0];                                             
+            for(j=0; j<1; j++){ //REMPLAZA LA EXPRESION EN PARENTESIS
+                text += "t" + c + " = " + t1[c] + "\n";//SE ALMACENA LA OPERACION QUE SINPLIFICA LA ECUACION
+                sup[c] = "t" + c + ""; //ALMACENA LOS T0,T1 ETC.
+                expIngresada = expIngresada.replace(t1[c],sup[c]); c++//REMPLAZA LO QUE SE ALMACENA EN T1 C POR LO QUE TIENE SUP C             
+            } i1++ 
+        }                   
+        let VR1=expIngresada.match(sma); var v1=VR1.length;
+        while(i2 < v1){   //SI I2 ES MENOR A V1 SE REPITE EL BUCLE
+            t2 = expIngresada.match(SMD); //ALMACENA LAS OPERACIONES DE SMD
+            t1[c]=t2[0];                                        
+            for(j=0; j<1; j++){  //REMPLAZA LA EXPRESION EN PARENTESIS
+                text += "t" +c + " = "+ t1[c] + "\n";        
+                sup[c] = "t" +c + ""; //ALMACENA LOS T0,T1 ETC.
+                expIngresada = expIngresada.replace(t1[c],sup[c]); c++ //REMPLAZA LO QUE SE ALMACENA EN T1 C POR LO QUE TIENE SUP C           
+            } i2++      
+        }
+        let VES1=expIngresada.match(SM); var VS1=VES1.length;
+        while(i3 < VS1){  //SI I3 ES MENOR A V1 SE REPITE EL BUCLE                                   
+            t2 = expIngresada.match(SSR);        //ALMACENA LAS OPERACIONES DE SSR           
+            t1[c]=t2[0];                                         
+            for(j=0; j<1; j++){                                 
+                text += "t" +c + " = "+ t1[c] + "\n";       
+                sup[c] = "t" +c + ""; //ALMACENA LOS T0,T1 ETC.
+             expIngresada = expIngresada.replace(t1[c],sup[c]); c++ //REMPLAZA LO QUE SE ALMACENA EN T1 C POR LO QUE TIENE SUP C                 
+            } i3++    
+        } 
+        document.getElementById("c3").innerHTML=text; //SE MUESTRA EL RESULTADO EN UN CUADRO DE TEXTO.
+        
+    } 
+    </script>
+</body>
+</html>
