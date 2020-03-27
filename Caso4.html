@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso4</title>
+   
+
+    <body>
+        <style>/*LE DA UN ESTILO AL MENU DONDE SE TIENE LOS CASOS */
+            ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+              background-color: #333;
+            }
+            
+            li {
+              float: left;
+            }
+            
+            li a {
+              display: block;
+              color: white;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+            }
+            
+            li a:hover {
+              background-color: #111;
+            }
+            </style>
+        <body>
+            <div>
+                <h1>Lenguaje y Automatas ll</h1><!-- SE MUESTRA EN EL LA PANTALLA ETIQUETA DE TEXTO -->
+                <h3>Codigo Intermedio</h3><!-- SE MUESTRA EN EL LA PANTALLA ETIQUETA DE TEXTO -->
+                <div id="navigation"><!-- MENU PARA LOS CASOS  -->
+                    <ul id="menu-bar">
+                        <li><a href="Caso1.html">CASO 1</a></li><!-- MENU PARA LOS CASOS  -->
+                        <li><a href="Caso2.html">CASO 2</a></li><!-- MENU PARA LOS CASOS  -->
+                        <li><a href="Caso3.html">CASO 3</a></li><!-- MENU PARA LOS CASOS  -->
+                        <li><a href="Caso4.html">CASO 4</a></li><!-- MENU PARA LOS CASOS  -->
+                        <li><a href="Caso5.html">CASO 5</a></li><!-- MENU PARA LOS CASOS  -->
+                       </ul>
+                
+                </div>
+  
+<div>
+    <p>CASO 4</p><!-- Titulo del caso -->
+    <button>X =</button><input type="text" name="Dato" id='exp4'value= "(a+ 2) / (3 - b)"><br></br><!-- Declaramos un input con el valor de la expresion -->
+    <button type="button" onclick="caso4()">GenerarCodigo</button><br> <!-- Obtenemos la funcion del caso4 -->
+    <h2>RESULTADO</h2></br><textarea name="textarea4" id="res4" cols="20" rows="10" wrap="hard"></textarea><br><!--Colocamos un TextArea para imprimir el codigo en triplos -->
+</div>
+<script>
+function caso4(){
+    var expIng4 = document.getElementById("exp4").value; //Se obtiene la expresión ingresada y se guarda en una variable
+    document.getElementById("exp4").innerHTML=expIng4; //se le asigna el valor de exp4 a expIng4
+    var text = "";let t;let t2;var arreg1 =["ini"];var i4=0;var i5=0;var i3=0;var j=0;var c=0;//Variables a utilizar
+    var parent = /\([a-zA-Z0-9]{1,}( |\[\d\]{1}|)(\*|\/|\+|\-)( |)[a-zA-Z0-9]{1,}( |\[\d\]{1}|)\)/gm; //expresion regular para encontrar los parentesis
+    var parOpen=/\(/gm; 
+    CParOpen=expIng4.match(parOpen); 
+    var conteoParent=CParOpen.length; //Para saber la cantidad de parentesis que existen
+    var prinSign = /[a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|)( |)(\*|\/)( |)([a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|))/gm; //expresion para encontrar / ó *
+    var seconSign = /[a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|)( |)(\+|\-)( |)([a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|))/gm; //expresion para encontrar + ó -
+    var mensR =/[a-zA-Z0-9]{1,}\[\d\]{1}/gm; 
+    var signMa=/( |)(\*|\/)( |)/gm; 
+    var signMe=/( |)(\+|\-)( |)/gm; 
+
+    t = expIng4.match(parent); //Contiene la cantidad de parentesis dentro la expresion ingresada
+    while(i3 < conteoParent){
+        t2 = expIng4.match(parent); //t2 almacena las operaciones que esten entre ()
+        t[c]=t2[0]; //al arreglo t en c se le asigna el primer resultado que se guarda en el arreglo t2[]
+        for(j=0; j<1; j++){
+            text += "t[" +c + "] = "+ t[c] + "\n";  //almacena los procedimientos
+            arreg1[c] = "t[" +c + "]"; //arreg1 agrega los temporales utilizados
+            expIng4 = expIng4.replace(t[c],arreg1[c]); //expIng4 es asignada su mismo contenido por lo que el temporal t tiene en el arreglo arreg1
+            c++           
+        }
+        i3++
+    }
+    let var1=expIng4.match(signMa); var v1=var1.length;     //Se le asigna a la variable v1, la cantidad de los signos prioritarios como * y /, que están dentro de la expresión que resulto después de terminar el ciclo while.
+    while(i4 < v1){ //Mientras i4 sea menor a la cantidad de signos encontrados se repite el bucle while.
+        t2 = expIng4.match(prinSign);  //t2 almacena las operaciones con * ó /
+        t[c]=t2[0];  //Se asigna al arreglo t en la posición [c], el primer resultado que se guarda en el arreglo t2[]
+        for(j=0; j<1; j++){  //reemplaza  por un temporal las operaciones con el signo + ó - 
+            text += "t[" +c + "] = "+ t[c] + "\n"; //text almacenara la operacion simplificada
+            arreg1[c] = "t[" +c + "]";
+            expIng4 = expIng4.replace(t[c],arreg1[c]); c++ //Se sustituye la expresión almacenada en t por lo que tenga arreg1                
+        } i4++                
+    }                        
+   let vsig1=expIng4.match(mensR); var vs1=vsig1.length;  //vsig1 almacenara la cant de temporales dentro de la expresión.
+   if(vs1==1){ //en caso de que la expresion tenga solo una operacion termina la operacion
+    document.getElementById("res4").innerHTML=text; //enviamos el valor al textarea4
+   } //Fin if
+   let var2=expIng4.match(signMe); var var3=var2.length;  //var3 contiene el tamaño de operaciones con signos + ó - que existan hasta ahora
+   if(var3>0){ //en caso de haberlo continua y sigue con las operaciones a imprimir  
+        while(i5 < var3){
+            t2 = expIng4.match(seconSign); //t2 almacena las operaciones que tienen los signos + ó -           
+            t[c]=t2[0];  //lo que tenga t en la posicion c sera igual al primer resultado con valor de t2
+            for(j=0; j<1; j++){ //reem´plzamos las operaciones + ó -         
+                text += "t[" +c + "] = "+ t[c]+"\n"; //text almacenara la operacion simplificada
+                arreg1[c] = "t[" +c + "]"; 
+                expIng4 = expIng4.replace(t[c],arreg1[c]); //Se sustituye la expresión almacenada en t por lo que tenga arreg1  
+                c++               
+        } i4++                
+            } i5++   //Aumenta i5 en un valor.   
+        }   //Fin de while
+        document.getElementById("res4").innerHTML=text; //enviamos el valor al textarea4
+   }  
+</script>
+</body>
