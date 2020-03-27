@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CASO 1</title>
 </head>
 <body>
     <style>/*ESTILO QUE LE DARA AL MENU DE LOS CASOS QUE SE VERA EN EL HTML*/
@@ -63,8 +63,8 @@
 function Caso1() {
     
     var ecuacion = document.getElementById('t1').value;
-       if(ecuacion != null){
-           var expres = /\d{1,}\s{0,}['+']\s{0,1}\d{1,}/gi; 
+       if(ecuacion != null){ 
+           var expres = /[a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|)( |)(\*|\/)( |)([a-zA-Z0-9]{1,}(\d{1,}| |\[\d\]{1}|))/gm; 
            var suma = ecuacion.match(expres);
            var i = 0;//VARIABLE CON VALOR DE 0
            var t1 = 't';//VARIABLE QUE ES T
